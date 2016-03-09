@@ -1,34 +1,48 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>Broadcast Events</title>
+        <script type="text/javascript" src="/js/vue.js"></script>
+    </head>
+    <body>
+    <h1>Broadcast Events</h1>
 
-        <style type="text/javascript">
+    <ul>
+        <li v-repeat="user: users">
+            @{{user.name}}
+        </li>
+    </ul>
+    
+    <script src="/js/socket.js"></script>
+    <script type="text/javascript">
 
-        ready: function() {
-            self = this;
+        var app = new Vue({
 
-            var socket = io('http://localhost:3000');
+            el: 'body',
 
-            socket.on('user-channel:UserRegistered', functon(message){
+            ready: function() {
+                self = this;
 
-                });
-                console.log(message);
-                self.users.push(message.user);
-            },
+                var socket = io('http://localhost:3000');
 
-            data:{
+                socket.on('user-channel:UserRegistered', functon(message){
+
+                    });
+                    console.log(message);
+                    self.users.push(message.user);
+                },
+
+            data: {
                 users:[
                     {name: 'Taylor', age: 28}
                 ]
             },
 
             methods:{
-                
-            }
 
-        </style>
-    </head>
+            }
+        });
+        </script>
     <body>
         <div class="container">
             <div class="content">

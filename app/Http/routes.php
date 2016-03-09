@@ -16,11 +16,12 @@ Route::get('/', function () {
 });
 
 
+//the messages will be shown from this route
 Route::get('start', function () {
     return view('start');
 });
 
-
+//the event will be fire from this route
 Route::get('socket', function(){
 	event(new UserRegistered(new App\User(['name' => 'Ivan'])));
 	return 'Done'; 
